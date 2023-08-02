@@ -12,6 +12,7 @@ public class JwtFilterWhiteList {
     };
 
     public static final String[] POST_WHITELIST = new String[]{
+            "/api/auth/kakao"
     };
 
     private static final List<String> getWhiteList = Arrays.asList(GET_WHITELIST);
