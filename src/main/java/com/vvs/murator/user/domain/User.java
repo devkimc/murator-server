@@ -2,6 +2,7 @@ package com.vvs.murator.user.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Builder;
 import lombok.Getter;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -9,6 +10,7 @@ import java.util.UUID;
 
 @Entity
 @Getter
+@Builder
 public class User {
 
     @Id
@@ -31,9 +33,9 @@ public class User {
 
     @Column(nullable = false)
     @NotBlank
-    private String oauthId;
+    private String socialUserId;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private OauthType oauthType;
+    private SocialType socialType;
 }
