@@ -1,6 +1,6 @@
 package com.vvs.murator.auth;
 
-import jparest.practice.user.domain.User;
+import com.vvs.murator.user.domain.User;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.List;
