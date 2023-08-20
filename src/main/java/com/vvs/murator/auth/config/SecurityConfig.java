@@ -3,6 +3,7 @@ package com.vvs.murator.auth.config;
 import com.vvs.murator.auth.jwt.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -23,7 +24,8 @@ import java.util.Arrays;
 import static com.vvs.murator.auth.jwt.JwtFilterWhiteList.GET_WHITELIST;
 import static com.vvs.murator.auth.jwt.JwtFilterWhiteList.POST_WHITELIST;
 
-@EnableWebSecurity
+@Configuration
+@EnableWebSecurity(debug = true)
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final JwtFilter jwtFilter;
@@ -45,22 +47,18 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .httpBasic(httpBasic -> httpBasic.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeRequests()
-                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-                .anyRequest().authenticated()
-                .and()
+                .authorizeRequests(authorizeRequests ->
+                        authorizeRequests
+                                .requestMatchers(HttpMethod.GET, GET_WHITELIST).permitAll()
+                                .requestMatchers(HttpMethod.POST, POST_WHITELIST).permitAll()
+                                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
+                                .anyRequest().authenticated()
+                )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(exceptionHandling -> exceptionHandling
                         .authenticationEntryPoint(authenticationEntryPoint)
                         .accessDeniedHandler(accessDeniedHandler))
                 .build();
-    }
-
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring()
-                .requestMatchers(HttpMethod.GET, GET_WHITELIST)
-                .requestMatchers(HttpMethod.POST, POST_WHITELIST);
     }
 
     /**

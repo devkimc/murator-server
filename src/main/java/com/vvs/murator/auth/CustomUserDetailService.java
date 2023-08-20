@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
 
 
 @RequiredArgsConstructor
@@ -18,7 +17,7 @@ public class CustomUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userId) {
-        User user = userRepository.findById(UUID.fromString(userId))
+        User user = userRepository.findById(Long.parseLong(userId))
                 .orElseThrow(() -> new UserNotFoundException("존재하지 않는 유저입니다."));
         return new UserAdapter(user);
     }
