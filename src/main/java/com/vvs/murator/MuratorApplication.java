@@ -16,5 +16,4 @@ public class MuratorApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MuratorApplication.class, args);
 	}
-
 }
