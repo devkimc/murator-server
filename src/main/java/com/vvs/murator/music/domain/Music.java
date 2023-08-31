@@ -1,19 +1,24 @@
-package com.vvs.murator.media.domain;
+package com.vvs.murator.music.domain;
 
 import com.vvs.murator.playlist.domain.Playlist;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Getter;
 
 @Entity
 @Getter
 @Builder
-public class Media {
+public class Music {
 
     @Id
-    @Column(name = "media_id", nullable = false, length = 50)
+    @Column(name = "music_id", nullable = false, length = 50)
     private Long id;
+
+    @Column(nullable = false, length = 100)
+    private String name;
+
+    @Column(nullable = false, length = 100)
+    private String artist;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "playlist_id")

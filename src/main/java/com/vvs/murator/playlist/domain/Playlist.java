@@ -1,6 +1,6 @@
 package com.vvs.murator.playlist.domain;
 
-import com.vvs.murator.media.domain.Media;
+import com.vvs.murator.music.domain.Music;
 import com.vvs.murator.user.domain.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -38,7 +38,7 @@ public class Playlist {
 
     @Builder.Default
     @OneToMany(mappedBy = "playlist")
-    private List<Media> medias = new ArrayList<>();
+    private List<Music> musics = new ArrayList<>();
 
 
 }

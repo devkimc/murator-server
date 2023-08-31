@@ -16,9 +16,9 @@ public interface YoutubeFeignClient {
             @RequestParam("part") String part,
             @RequestParam("maxResults") int maxResults,
             @RequestParam("key") String apiKey,
+            @RequestParam("q") String q,
             @RequestParam("type") String type,
             @RequestParam("videoEmbeddable") String videoEmbeddable,
-            @RequestParam("videoSyndicated") String videoSyndicated,
-            @RequestHeader("Authorization") String accessToken
+            @RequestParam("videoSyndicated") String videoSyndicated
     );
 }
