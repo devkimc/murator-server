@@ -24,7 +24,7 @@ public class Playlist {
     @NotBlank
     private String title;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 200)
     @NotBlank
     private String description;
 
