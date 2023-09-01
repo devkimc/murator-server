@@ -3,15 +3,20 @@ package com.vvs.murator.music.domain;
 import com.vvs.murator.playlist.domain.Playlist;
 import com.vvs.murator.video.domain.Video;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Music {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "music_id", nullable = false, length = 50)
     private Long id;
 

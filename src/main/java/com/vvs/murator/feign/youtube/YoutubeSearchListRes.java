@@ -33,10 +33,14 @@ public class YoutubeSearchListRes {
             private String title;
             private Thumbnails thumbnails;
 
+            @Getter
+            @NoArgsConstructor
             public static class Thumbnails {
-                private List<Default> defaults = new ArrayList<>();
+                private High high;
 
-                public static class Default {
+                @Getter
+                @NoArgsConstructor
+                public static class High {
                     private String url;
                 }
             }
