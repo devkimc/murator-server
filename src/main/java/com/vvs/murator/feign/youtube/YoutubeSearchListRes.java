@@ -2,13 +2,12 @@ package com.vvs.murator.feign.youtube;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-public class YoutubeSearchListResponse {
+public class YoutubeSearchListRes {
 
     private List<Item> items = new ArrayList<>();
 
@@ -34,10 +33,14 @@ public class YoutubeSearchListResponse {
             private String title;
             private Thumbnails thumbnails;
 
+            @Getter
+            @NoArgsConstructor
             public static class Thumbnails {
-                private List<Default> defaults = new ArrayList<>();
+                private High high;
 
-                public static class Default {
+                @Getter
+                @NoArgsConstructor
+                public static class High {
                     private String url;
                 }
             }

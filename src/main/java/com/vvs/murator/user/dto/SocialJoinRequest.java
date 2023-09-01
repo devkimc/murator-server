@@ -4,10 +4,12 @@ import com.vvs.murator.user.domain.SocialType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
-@AllArgsConstructor
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class SocialJoinRequest {
     private String socialUserId;
     private String email;
